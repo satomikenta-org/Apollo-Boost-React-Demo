@@ -22,6 +22,8 @@ export const register = async (name, email) => {
   }
 };
 
+export const logout = async () => window.localStorage.removeItem('jwt');
+
 export const validator = (name, email) => {
   if (name !== "" && email !== "") {
     return true;
@@ -34,4 +36,8 @@ export const getJWT = () => {
   const token = window.localStorage.getItem('jwt');
   if (token) return token;
   return false;
+};
+
+export const deleteJWT = () => {
+  window.localStorage.removeItem('jwt');
 };

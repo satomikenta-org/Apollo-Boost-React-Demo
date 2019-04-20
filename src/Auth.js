@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { login, register, validator } from './lib/auth';
 
-const Auth = () => {
+const Auth = ({ setIsAuth }) => {
   
   const [ name, setName ] = useState("");
   const [ email, setEmail ] = useState("");
@@ -9,7 +9,7 @@ const Auth = () => {
   const clearInputAndAlert = () => {
     setName("");
     setEmail("");
-    alert("Succeeded to Login");
+    alert("Succeeded!");
   };
 
   const onChangeInput = e => {
@@ -25,6 +25,7 @@ const Auth = () => {
       const result = await register(name, email);
       if (result) {
         clearInputAndAlert();
+        setIsAuth(true);
       } else {
         alert("Failed to Register");
       }
@@ -38,6 +39,7 @@ const Auth = () => {
       const result = await login(name, email);
       if (result) {
         clearInputAndAlert();
+        setIsAuth(true);
       } else {
         alert("Failed to Login");
       }
